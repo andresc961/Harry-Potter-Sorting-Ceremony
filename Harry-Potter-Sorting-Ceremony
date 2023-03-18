@@ -1,0 +1,41 @@
+#Python script for a Harry Potter Sorting Ceremony based on personality questions:
+# Define a dictionary to store the personality traits associated with each Hogwarts house
+houses = {
+    "Gryffindor": {"brave": 0, "daring": 0, "chivalrous": 0},
+    "Hufflepuff": {"loyal": 0, "hardworking": 0, "patient": 0},
+    "Ravenclaw": {"intelligent": 0, "creative": 0, "wise": 0},
+    "Slytherin": {"ambitious": 0, "cunning": 0, "resourceful": 0}
+}
+
+# Define a list of questions to ask the student
+questions = [
+    "Do you consider yourself brave?",
+    "Do you value loyalty above all else?",
+    "Do you think intelligence is more important than creativity?",
+    "Do you believe that cunning and resourcefulness are important qualities to have?"
+]
+
+# Loop through each question and add points to the appropriate house based on the student's answer
+for question in questions:
+    answer = input(question + " (yes/no): ")
+    if answer.lower() == "yes":
+        houses["Gryffindor"]["brave"] += 1
+        houses["Hufflepuff"]["loyal"] += 1
+        houses["Ravenclaw"]["intelligent"] += 1
+        houses["Slytherin"]["cunning"] += 1
+    else:
+        houses["Gryffindor"]["chivalrous"] += 1
+        houses["Hufflepuff"]["hardworking"] += 1
+        houses["Ravenclaw"]["creative"] += 1
+        houses["Slytherin"]["resourceful"] += 1
+
+# Determine the house with the highest total score and sort the student into that house
+max_score = 0
+max_house = None
+for house, traits in houses.items():
+    score = sum(traits.values())
+    if score > max_score:
+        max_score = score
+        max_house = house
+
+print("Congratulations! Based on your answers, you have been sorted into {0}!".format(max_house))
